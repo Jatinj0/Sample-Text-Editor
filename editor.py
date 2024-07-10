@@ -5,16 +5,10 @@ class SimpleEditor:
     def __init__(self, root):
         self.root = root
         self.root.title("Simple Text Editor")
-
-        # Create a Text widget
         self.text_area = tk.Text(self.root, undo=True)
         self.text_area.pack(fill=tk.BOTH, expand=1)
-
-        # Create a Menu bar
         self.menu_bar = tk.Menu(self.root)
         self.root.config(menu=self.menu_bar)
-
-        # Create File menu
         self.file_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.menu_bar.add_cascade(label="File", menu=self.file_menu)
         self.file_menu.add_command(label="New", command=self.new_file)
@@ -23,8 +17,6 @@ class SimpleEditor:
         self.file_menu.add_command(label="Save As", command=self.save_as_file)
         self.file_menu.add_separator()
         self.file_menu.add_command(label="Exit", command=self.exit_editor)
-
-        # Create Edit menu
         self.edit_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.menu_bar.add_cascade(label="Edit", menu=self.edit_menu)
         self.edit_menu.add_command(label="Undo", command=self.text_area.edit_undo)
@@ -33,8 +25,6 @@ class SimpleEditor:
         self.edit_menu.add_command(label="Cut", command=self.cut_text)
         self.edit_menu.add_command(label="Copy", command=self.copy_text)
         self.edit_menu.add_command(label="Paste", command=self.paste_text)
-
-        # Initialize filename
         self.filename = None
 
     def new_file(self):
@@ -74,13 +64,10 @@ class SimpleEditor:
     def exit_editor(self):
         if messagebox.askokcancel("Quit", "Do you really want to quit?"):
             self.root.destroy()
-
     def cut_text(self):
         self.text_area.event_generate("<<Cut>>")
-
     def copy_text(self):
         self.text_area.event_generate("<<Copy>>")
-
     def paste_text(self):
         self.text_area.event_generate("<<Paste>>")
 
